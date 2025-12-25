@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, Variants } from 'framer-motion';
-import { Search, MapPin, GraduationCap, Globe, BookOpen, ArrowRight } from 'lucide-react';
+import { Search, MapPin, GraduationCap, Globe, BookOpen } from 'lucide-react';
 import { FilterState } from '@/types';
 
 interface AnimatedHeroProps {

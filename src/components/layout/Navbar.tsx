@@ -49,7 +49,7 @@ export const Navbar = () => {
             <div className="flex items-center space-x-3">
               <button 
                 onClick={() => setIsAppsListOpen(true)}
-                className="text-sm font-bold text-gray-700 hover:text-indigo-600 bg-gray-100 hover:bg-indigo-50 px-4 py-2 rounded-full transition-colors flex items-center gap-2"
+                className="text-sm font-bold text-gray-700 hover:text-indigo-600 hover:cursor-pointer bg-gray-100 hover:bg-indigo-50 px-4 py-2 rounded-full transition-colors flex items-center gap-2"
               >
                 <ClipboardList className="w-4 h-4" />
                 <span className="hidden sm:inline">My Applications</span>

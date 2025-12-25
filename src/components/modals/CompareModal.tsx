@@ -161,7 +161,7 @@ export const CompareModal = ({
                   <td key={uni.id} className="p-6 border-b border-gray-50">
                     <button
                       onClick={() => onApply(uni)}
-                      className="w-full bg-gray-900 hover:bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl shadow-lg hover:shadow-indigo-200 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                      className="w-full bg-gray-900 hover:bg-indigo-600 hover:cursor-pointer text-white font-bold py-3 px-4 rounded-xl shadow-lg hover:shadow-indigo-200 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
                     >
                       Apply Now <ArrowRight className="w-4 h-4" />
                     </button>

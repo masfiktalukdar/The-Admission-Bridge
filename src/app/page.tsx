@@ -310,7 +310,7 @@ export default function Home() {
                 className={`px-6 py-2.5 rounded-xl font-bold text-sm shadow-lg transition-all flex items-center gap-2
                   ${
                     canCompare
-                      ? "bg-indigo-600 text-white hover:bg-indigo-500 hover:scale-105"
+                      ? "bg-indigo-600 text-white hover:bg-indigo-500 hover:cursor-pointer hover:scale-105"
                       : "bg-gray-700 text-gray-500 cursor-not-allowed"
                   }
                 `}

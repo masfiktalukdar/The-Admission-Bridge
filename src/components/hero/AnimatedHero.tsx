@@ -173,10 +173,6 @@ export const AnimatedHero = ({ onSearch }: AnimatedHeroProps) => {
                 </option>
               </select>
             </div>
-
-            <button className="bg-white text-indigo-900 font-bold py-3 px-8 rounded-xl hover:bg-indigo-50 transition-colors shadow-lg flex items-center justify-center gap-2">
-              Explore <ArrowRight className="w-4 h-4" />
-            </button>
           </motion.div>
         </motion.div>
       </div>

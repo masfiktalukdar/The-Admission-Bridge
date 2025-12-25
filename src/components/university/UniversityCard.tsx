@@ -155,7 +155,7 @@ export const UniversityCard = React.forwardRef<
 
           <button
             onClick={() => onApply(uni)}
-            className="bg-gray-900 hover:bg-indigo-600 text-white text-sm font-semibold py-2.5 px-5 rounded-lg transition-all shadow-sm hover:shadow-indigo-200 hover:shadow-lg flex items-center gap-2 transform active:scale-95"
+            className="bg-gray-900 hover:bg-indigo-600 text-white text-sm font-semibold py-2.5 px-5 rounded-lg transition-all shadow-sm hover:shadow-indigo-200 hover:cursor-pointer hover:shadow-lg flex items-center gap-2 transform active:scale-95"
           >
             Apply <ArrowRight className="w-4 h-4" />
           </button>

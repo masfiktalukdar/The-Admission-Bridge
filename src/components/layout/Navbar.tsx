@@ -1,38 +1,49 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { GraduationCap, ClipboardList } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
-import { ApplicationsListModal } from '@/components/modals/ApplicationsListModal';
-import { User } from '@supabase/supabase-js';
+import { useState, useEffect } from "react";
+import { GraduationCap, ClipboardList } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { ApplicationsListModal } from "@/components/modals/ApplicationsListModal";
+import { User } from "@supabase/supabase-js";
 
 export const Navbar = () => {
   const [user, setUser] = useState<User | null>(null);
+  const [isSigningIn, setIsSigningIn] = useState(false);
   const [isAppsListOpen, setIsAppsListOpen] = useState(false);
+
+  const handleAnonymousLogin = async () => {
+    setIsSigningIn(true);
+    const { error } = await supabase.auth.signInAnonymously();
+    if (error) {
+      console.error("Anonymous sign-in failed:", error);
+      setIsSigningIn(false);
+      // Fallback or alert
+      alert(
+        "To enable sign-in, please configure Supabase Auth (Anonymous or Email/Password)."
+      );
+    }
+  };
 
   useEffect(() => {
     // Check initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
+      // If no session, automatically sign in anonymously
+      if (!session) {
+        handleAnonymousLogin();
+      }
     });
 
     // Listen for changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
+      setIsSigningIn(false);
     });
 
     return () => subscription.unsubscribe();
   }, []);
-
-  const handleLogin = async () => {
-    // For this demo, we'll try anonymous sign in if enabled, or just warn
-    const { error } = await supabase.auth.signInAnonymously();
-    if (error) {
-        console.error("Anonymous sign-in failed:", error);
-        // Fallback or alert
-        alert("To enable sign-in, please configure Supabase Auth (Anonymous or Email/Password).");
-    }
-  };
 
   return (
     <>
@@ -43,11 +54,15 @@ export const Navbar = () => {
               <div className="bg-indigo-600 p-1.5 rounded-lg mr-2">
                 <GraduationCap className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xl font-extrabold text-gray-900 tracking-tight hidden sm:block">The Admission Bridge</span>
-              <span className="text-xl font-extrabold text-gray-900 tracking-tight sm:hidden">TAB</span>
+              <span className="text-xl font-extrabold text-gray-900 tracking-tight hidden sm:block">
+                The Admission Bridge
+              </span>
+              <span className="text-xl font-extrabold text-gray-900 tracking-tight sm:hidden">
+                TAB
+              </span>
             </div>
             <div className="flex items-center space-x-3">
-              <button 
+              <button
                 onClick={() => setIsAppsListOpen(true)}
                 className="text-sm font-bold text-gray-700 hover:text-indigo-600 hover:cursor-pointer bg-gray-100 hover:bg-indigo-50 px-4 py-2 rounded-full transition-colors flex items-center gap-2"
               >
@@ -55,15 +70,34 @@ export const Navbar = () => {
                 <span className="hidden sm:inline">My Applications</span>
               </button>
               <div className="flex items-center text-xs font-medium text-gray-500 bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-full">
-                <span className={`w-2 h-2 rounded-full mr-2 ${user ? 'bg-green-500' : 'bg-yellow-500 animate-pulse'}`}></span>
-                {user ? 'Online' : <button onClick={handleLogin} className="hover:text-indigo-600">Guest (Login)</button>}
+                <span
+                  className={`w-2 h-2 rounded-full mr-2 ${
+                    user
+                      ? "bg-green-500"
+                      : isSigningIn
+                      ? "bg-blue-500 animate-pulse"
+                      : "bg-yellow-500 animate-pulse"
+                  }`}
+                ></span>
+                {user ? (
+                  "Online"
+                ) : isSigningIn ? (
+                  "Signing in..."
+                ) : (
+                  <button
+                    onClick={handleAnonymousLogin}
+                    className="hover:text-indigo-600 hover:cursor-pointer"
+                  >
+                    Guest (Login)
+                  </button>
+                )}
               </div>
             </div>
           </div>
         </div>
       </nav>
 
-      <ApplicationsListModal 
+      <ApplicationsListModal
         isOpen={isAppsListOpen}
         onClose={() => setIsAppsListOpen(false)}
         userId={user?.id}

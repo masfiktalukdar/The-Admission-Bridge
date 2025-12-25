@@ -102,7 +102,7 @@ export const ApplyModal = ({
         animate={{ y: 0, opacity: 1 }}
         className="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]"
       >
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-800 p-8 text-white">
+        <div className="bg-linear-to-r from-indigo-600 to-indigo-800 p-8 text-white">
           <h2 className="text-2xl font-bold">Apply to {university.name}</h2>
           <div className="flex items-center gap-2 mt-2">
             <div
@@ -124,7 +124,7 @@ export const ApplyModal = ({
         <form onSubmit={handleSubmit} className="p-8 flex-1 overflow-y-auto">
           {error && (
             <div className="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded-r-md flex items-start gap-3 animate-pulse">
-              <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+              <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
               <p className="text-sm text-red-700 font-medium">{error}</p>
             </div>
           )}
@@ -262,7 +262,7 @@ export const ApplyModal = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-[2] py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed font-bold transition-all shadow-lg shadow-indigo-200 flex justify-center items-center gap-2"
+                className="flex-2 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed font-bold transition-all shadow-lg shadow-indigo-200 flex justify-center items-center gap-2"
               >
                 {isSubmitting ? (
                   <Loader2 className="animate-spin w-5 h-5" />

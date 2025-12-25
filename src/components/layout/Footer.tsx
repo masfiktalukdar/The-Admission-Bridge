@@ -57,13 +57,13 @@ export const Footer = () => {
             <h4 className="text-white font-bold mb-4">Contact</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center shrink-0">
                   <MapPin className="w-4 h-4 text-indigo-500"/>
                 </div> 
                 <span>123 Education Lane, NY, USA</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4 text-indigo-500"/>
                 </div>
                 <span>support@tab.edu</span>

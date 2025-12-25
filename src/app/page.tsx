@@ -275,6 +275,8 @@ export default function Home() {
                   <Image
                     key={u.id}
                     src={u.image_url}
+                    width={40}
+                    height={40}
                     sizes="(max-width: 768px) 100vw, 33vw"
                     loading="eager"
                     className="w-10 h-10 rounded-full border-2 border-gray-900 object-cover bg-gray-800"

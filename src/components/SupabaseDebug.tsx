@@ -16,7 +16,7 @@ export function SupabaseDebug() {
   const checkConnection = async () => {
     try {
       // 1. Static Key Check
-      // @ts-ignore
+      // @ts-expect-error Accessing internal supabaseKey property for validation
       const key = supabase.supabaseKey || "";
       if (key.startsWith("sb_secret")) {
         setStatus("error");
